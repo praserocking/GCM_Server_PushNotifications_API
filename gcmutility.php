@@ -34,7 +34,7 @@ class GCMUtility{
 
 	//Constructor with Google API Browser Key as Parameter
 	//Parameter Type: String
-	function __contruct__($apiKey){
+	function __contruct($apiKey){
 		define(API_KEY,$apiKey);
 	}
 
