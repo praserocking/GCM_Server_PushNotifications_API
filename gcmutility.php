@@ -23,10 +23,9 @@ class GCMUtility{
 
 	************************************************************************/
 
-	//URL Constant
-	define(URL,"https://android.googleapis.com/gcm/send");
-
 	//Variables
+	private $url;
+	private $api_key;
 	private $time_to_live;
 	private $restricted_package_name;
 	private $device_ids=array();
@@ -35,7 +34,8 @@ class GCMUtility{
 	//Constructor with Google API Browser Key as Parameter
 	//Parameter Type: String
 	function __contruct($apiKey){
-		define(API_KEY,$apiKey);
+		 $this->url = "https://android.googleapis.com/gcm/send";
+		 $this->api_key = $apiKey;
 	}
 
 	//Function to set Time to Live (TTL)
@@ -82,11 +82,11 @@ class GCMUtility{
 		if(isset($this->restricted_package_name))
 			$post_data['restricted_package_name']=$this->restricted_package_name;
 		$headers=array(
-					'Authorization: key='.API_KEY,
+					'Authorization: key='.$this->api_key,
 					'Content-Type: application/json'
 					);
 		$ch=curl_init();
-		curl_setopt($ch,CURLOPT_URL,URL);
+		curl_setopt($ch,CURLOPT_URL,$this->url);
 		curl_setopt($ch,CURLOPT_POST,true);
 		curl_setopt($ch,CURLOPT_HTTPHEADER,$headers);
 		curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
